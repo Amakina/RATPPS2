@@ -17,15 +17,18 @@ namespace RATPPS2
 
         public async Task<bool> Ping()
         {
-            try
+            while (true)
             {
-                var response = await httpClient.GetAsync($"{url}/Ping");
-                response.EnsureSuccessStatusCode();
-                return true;
+                try
+                {
+                    var response = await httpClient.GetAsync($"{url}/Ping");
+                    response.EnsureSuccessStatusCode();
+                    return true;
 
-            } catch
-            {
-                return false;
+                } catch
+                {
+                    continue;
+                }
             }
         }
 
